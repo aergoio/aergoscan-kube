@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: local
+  name: aergoscan
+  annotations:
+    traefik.ingress.kubernetes.io/router.pathmatcher: Path
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: local.aergoscan.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aergoscan-front
+                port:
+                  number: 80
+    - host: api2-local.aergoscan.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aergoscan-api
+                port:
+                  number: 80
+    - host: local-api-http.aergo.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aergo-node1
+                port:
+                  number: 7845

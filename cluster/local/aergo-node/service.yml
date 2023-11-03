@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aergo-node1
+  labels:
+    aergo: node
+spec:
+  ports:
+    - name: "7845"
+      targetPort: 7845
+      port: 7845
+    - name: "7846"
+      targetPort: 7846
+      port: 7846
+  selector:
+    app: aergo-node1
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aergo-node2
+  labels:
+    aergo: node
+spec:
+  ports:
+    - name: "27485"
+      port: 27845
+      targetPort: 27845
+    - name: "27486"
+      port: 27846
+      targetPort: 27846
+  selector:
+    app: aergo-node2
+  type: LoadBalancer

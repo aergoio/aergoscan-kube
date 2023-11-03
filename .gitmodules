@@ -1,0 +1,20 @@
+[submodule "docker/aergoscan_v2_api"]
+	path = docker/aergoscan_v2_api
+	url = https://github.com/aergoio/aergoscan_v2_api.git
+	branch = main
+[submodule "docker/aergoscan_v2_frontend"]
+	path = docker/aergoscan_v2_frontend
+	url = https://github.com/aergoio/aergoscan_v2_frontend.git
+	branch = main
+[submodule "elasticsearch"]
+	path = elasticsearch
+	url = https://github.com/blockoio/aergoscan-elasticsearch-kube.git
+[submodule "indexer"]
+	path = indexer
+	url = https://github.com/blockoio/aergoscan-indexer-kube.git
+[submodule "api"]
+	path = api
+	url = https://github.com/blockoio/aergoscan-api-kube.git
+[submodule "front"]
+	path = front
+	url = https://github.com/blockoio/aergoscan-front-kube.git

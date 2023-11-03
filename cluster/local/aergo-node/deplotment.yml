@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aergo-node1
+  labels:
+    aergo: node
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: aergo-node1
+  template:
+    metadata:
+      labels:
+        app: aergo-node1
+    spec:
+      initContainers:
+        - name: init-genesis
+          image: aergo/node:2.4.7
+          command:
+            - aergosvr
+            - init
+            - --genesis
+            - /aergo/genesis.json
+            - --home
+            - /aergo
+            - --config
+            - /aergo/config1.toml
+          volumeMounts:
+            - name: raft-private
+              mountPath: /aergo
+      containers:
+        - name: aergo-node1
+          image: aergo/node:2.4.7
+          command:
+            - aergosvr
+            - --home
+            - /aergo
+            - --config
+            - /aergo/config1.toml
+          volumeMounts:
+            - name: raft-private
+              mountPath: /aergo
+          readinessProbe:
+            tcpSocket:
+              port: 7845
+          livenessProbe:
+            tcpSocket:
+              port: 7845
+          resources:
+            limits:
+              cpu: 250m
+              memory: 500Mi
+      volumes:
+        - name: raft-private
+          hostPath:
+            path: /Users/blocko/raft_private
+            type: Directory
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aergo-node2
+  labels:
+    aergo: node
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: aergo-node2
+  template:
+    metadata:
+      labels:
+        app: aergo-node2
+    spec:
+      initContainers:
+        - name: init-genesis
+          image: aergo/node:2.4.7
+          command:
+            - aergosvr
+            - init
+            - --genesis
+            - /aergo/genesis.json
+            - --home
+            - /aergo
+            - --config
+            - /aergo/config2.toml
+          volumeMounts:
+            - name: raft-private
+              mountPath: /aergo
+      containers:
+        - name: aergo-node2
+          image: aergo/node:2.4.7
+          command:
+            - aergosvr
+            - --home
+            - /aergo
+            - --config
+            - /aergo/config2.toml
+          volumeMounts:
+            - name: raft-private
+              mountPath: /aergo
+          readinessProbe:
+            tcpSocket:
+              port: 27845
+          livenessProbe:
+            tcpSocket:
+              port: 27845
+          resources:
+            limits:
+              cpu: 250m
+              memory: 500Mi
+      volumes:
+        - name: raft-private
+          hostPath:
+            path: /Users/blocko/raft_private
+            type: Directory
