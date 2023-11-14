@@ -5,8 +5,8 @@ services:
         build:
             context: .
             args:
-                ARG_AERGO_NODE_HOST: http://local-api-http.aergo.io
-                ARG_API_URL: http://api2-local.aergoscan.io/v3
+                AERGO_NODE: http://local-api-http.aergo.io
+                API_URL: http://api2-local.aergoscan.io/v3
     backend:
         image: aergoscan/api:2.4.0
         build:
