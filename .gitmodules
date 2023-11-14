@@ -8,13 +8,17 @@
 	branch = main
 [submodule "elasticsearch"]
 	path = elasticsearch
-	url = https://github.com/blockoio/aergoscan-elasticsearch-kube.git
+	url = https://github.com/aergoio/aergoscan-elasticsearch-kube.git
+	branch = main
 [submodule "indexer"]
 	path = indexer
-	url = https://github.com/blockoio/aergoscan-indexer-kube.git
+	url = https://github.com/aergoio/aergoscan-indexer-kube.git
+	branch = main
 [submodule "api"]
 	path = api
-	url = https://github.com/blockoio/aergoscan-api-kube.git
+	url = https://github.com/aergoio/aergoscan-api-kube.git
+	branch = main
 [submodule "front"]
 	path = front
-	url = https://github.com/blockoio/aergoscan-front-kube.git
+	url = https://github.com/aergoio/aergoscan-front-kube.git
+	branch = main
