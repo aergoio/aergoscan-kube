@@ -6,14 +6,12 @@ WORKDIR /aergoscan_frontend
 COPY ./aergoscan_v2_frontend/package* ./
 RUN yarn
 
-ARG ARG_AERGO_NODE_HOST="http://local-api-http.aergo.io"
-ARG ARG_API_URL="http://api2-local.aergoscan.io/v2"
-ENV AERGO_NODE ${ARG_AERGO_NODE_HOST}
-ENV API_URL ${ARG_API_URL}
+ARG AERGO_NODE="http://local-api-http.aergo.io"
+ARG API_URL="http://api2-local.aergoscan.io/v2"
 
 COPY ./aergoscan_v2_frontend .
 
-RUN AERGO_NODE=${AERGO_NODE} API_URL=${API_URL} yarn build
+RUN yarn build
 
 
 FROM nginx:latest
