@@ -15,7 +15,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: aergoscan-front
+                name: aergoscan-front-blue
                 port:
                   number: 80
     - host: api2-local.aergoscan.io
@@ -25,7 +25,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: aergoscan-api
+                name: aergoscan-api-blue
                 port:
                   number: 80
     - host: local-api-http.aergo.io

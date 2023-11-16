@@ -1,4 +1,9 @@
-helm uninstall aergoscan-front
-helm uninstall aergoscan-api
-helm uninstall aergoscan-indexer
-helm uninstall aergoscan-es
+#!/bin/sh
+
+. choice-blue-green
+
+helm uninstall -n local aergoscan-front-$deploymentType
+helm uninstall -n local aergoscan-api-$deploymentType
+helm uninstall -n local aergoscan-indexer-$deploymentType
+helm uninstall -n local aergoscan-es-$deploymentType
+
