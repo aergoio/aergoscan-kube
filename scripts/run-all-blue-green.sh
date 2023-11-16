@@ -1,4 +1,7 @@
 #!/bin/sh
+
+. choice-blue-green
+
 while true; do
   echo "Do you want to initialize the data volume? (y/n) [n]:"
   read -r choice
@@ -16,11 +19,11 @@ while true; do
 
       if [ "$choice_lowercase2" = "y" ]; then
         echo "Initialize and run the data volume."
-        helm upgrade --atomic --install aergoscan-es ../elasticsearch --set-string deployment.initContainers.initData.enable=true
+        helm upgrade --atomic --install -n local aergoscan-es-$deploymentType ../elasticsearch --set-string deployment.initContainers.initData.enable=true --set-string deployment.type=$deploymentType
         break
       elif [ "$choice_lowercase2" = "n" ]; then
         echo "Keep and run the data volume."
-        helm upgrade --atomic --install aergoscan-es ../elasticsearch
+        helm upgrade --atomic --install -n local aergoscan-es-$deploymentType ../elasticsearch --set-string deployment.type=$deploymentType
         break
       else
         echo "Invalid choice. Please enter 'y' or 'n'."
@@ -29,13 +32,13 @@ while true; do
     break
   elif [ "$choice_lowercase" = "n" ]; then
     echo "Keep and run the data volume."
-    helm upgrade --atomic --install aergoscan-es ../elasticsearch
+    helm upgrade --atomic --install -n local aergoscan-es-$deploymentType ../elasticsearch --set-string deployment.type=$deploymentType
     break
   else
     echo "Invalid choice. Please enter 'y' or 'n'."
   fi
 done
 
-helm upgrade --atomic --install aergoscan-indexer ../indexer
-helm upgrade --atomic --install aergoscan-api ../api
-helm upgrade --atomic --install aergoscan-front ../front
+helm upgrade --atomic --install -n local aergoscan-indexer-$deploymentType ../indexer --set-string deployment.type=$deploymentType
+helm upgrade --atomic --install -n local aergoscan-api-$deploymentType ../api --set-string deployment.type=$deploymentType
+helm upgrade --atomic --install -n local aergoscan-front-$deploymentType ../front --set-string deployment.type=$deploymentType

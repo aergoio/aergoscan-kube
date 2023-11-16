@@ -1,0 +1,20 @@
+deploymentType="blue"
+
+while true; do
+  echo "Enter your deployment type. (b[blue]/g[green]) [b]:"
+  read -r choice
+  choice=${choice:-"b"}
+  choice_lowercase=$(echo "$choice" | tr '[:upper:]' '[:lower:]')
+  choice_lowercase=$(echo "$choice" | tr '[:upper:]' '[:lower:]')
+
+  if [ "$choice_lowercase" = "b" ]; then
+    echo "Runs in $deploymentType."
+    break
+  elif [ "$choice_lowercase" = "g" ]; then
+    deploymentType="green"
+    echo "Runs in $deploymentType."
+    break
+  else
+    echo "Invalid choice. Please enter 'b' or 'g'."
+  fi
+done
