@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aergoscan-es-default-claim-blue
+  namespace: local
+  labels:
+    environment: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: hostpath-retain
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aergoscan-es-default-claim-green
+  namespace: local
+  labels:
+    environment: local
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: hostpath-retain
+  resources:
+    requests:
+      storage: 20Gi
