@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: init-genesis
-          image: aergo/node:2.4.7
+          image: aergo/node:2.4.10
           command:
             - aergosvr
             - init
@@ -28,11 +28,11 @@ spec:
             - --config
             - /aergo/config1.toml
           volumeMounts:
-            - name: raft-private
+            - name: scan-node
               mountPath: /aergo
       containers:
         - name: aergo-node1
-          image: aergo/node:2.4.7
+          image: aergo/node:2.4.10
           command:
             - aergosvr
             - --home
@@ -40,7 +40,7 @@ spec:
             - --config
             - /aergo/config1.toml
           volumeMounts:
-            - name: raft-private
+            - name: scan-node
               mountPath: /aergo
           readinessProbe:
             tcpSocket:
@@ -53,9 +53,9 @@ spec:
               cpu: 250m
               memory: 500Mi
       volumes:
-        - name: raft-private
+        - name: scan-node
           hostPath:
-            path: /Users/blocko/raft_private
+            path: /Users/blocko/scan-node
             type: Directory
 ---
 apiVersion: apps/v1
@@ -77,7 +77,7 @@ spec:
     spec:
       initContainers:
         - name: init-genesis
-          image: aergo/node:2.4.7
+          image: aergo/node:2.4.10
           command:
             - aergosvr
             - init
@@ -88,11 +88,11 @@ spec:
             - --config
             - /aergo/config2.toml
           volumeMounts:
-            - name: raft-private
+            - name: scan-node
               mountPath: /aergo
       containers:
         - name: aergo-node2
-          image: aergo/node:2.4.7
+          image: aergo/node:2.4.10
           command:
             - aergosvr
             - --home
@@ -100,7 +100,7 @@ spec:
             - --config
             - /aergo/config2.toml
           volumeMounts:
-            - name: raft-private
+            - name: scan-node
               mountPath: /aergo
           readinessProbe:
             tcpSocket:
@@ -113,7 +113,7 @@ spec:
               cpu: 250m
               memory: 500Mi
       volumes:
-        - name: raft-private
+        - name: scan-node
           hostPath:
-            path: /Users/blocko/raft_private
+            path: /Users/blocko/scan-node
             type: Directory
