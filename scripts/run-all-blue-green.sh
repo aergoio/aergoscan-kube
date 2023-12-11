@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. choice-blue-green
+. ./choice-blue-green
 
 while true; do
   echo "Do you want to initialize the data volume? (y/n) [n]:"

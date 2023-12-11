@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. choice-blue-green
+. ./choice-blue-green
 
 helm uninstall -n local aergoscan-front-$deploymentType
 helm uninstall -n local aergoscan-api-$deploymentType
